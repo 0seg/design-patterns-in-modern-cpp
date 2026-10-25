@@ -1,1 +1,1 @@
-# desing-patterns-in-modern-cpp
+# design-patterns-in-modern-cpp

@@ -1,6 +1,6 @@
 # Builder Facets
 
-A C++ implementation of the Builder Facets pattern.
+A C++20 implementation of the Builder Facets pattern.
 
 ## Overview
 

@@ -27,42 +27,38 @@ private:
 
 public:
     // Configure the CPU.
-    ComputerBuilder& setCPU(const std::string& cpu) {
+    void setCPU(const std::string& cpu) {
         if (cpu.empty()) {
             throw std::invalid_argument("CPU cannot be empty");
         }
 
         computer.cpu = cpu;
-        return *this;
     }
 
     // Configure the GPU.
-    ComputerBuilder& setGPU(const std::string& gpu) {
+    void setGPU(const std::string& gpu) {
         computer.gpu = gpu;
-        return *this;
     }
 
     // Configure RAM with a positive value.
-    ComputerBuilder& setRAM(int ram) {
+    void setRAM(int ram) {
         if (ram <= 0) {
             throw std::invalid_argument("RAM must be positive");
         }
 
         computer.ram = ram;
-        return *this;
     }
 
     // Configure storage with a positive value.
-    ComputerBuilder& setStorage(int storage) {
+    void setStorage(int storage) {
         if (storage <= 0) {
             throw std::invalid_argument("Storage must be positive");
         }
 
         computer.storage = storage;
-        return *this;
     }
 
-    // Return the completed product.
+    // Return the constructed product.
     Computer build() const {
         return computer;
     }
@@ -70,12 +66,14 @@ public:
 
 int main() {
     try {
-        Computer computer = ComputerBuilder{}
-            .setCPU("Intel Core i9")
-            .setGPU("NVIDIA GeForce RTX 3080")
-            .setRAM(32)
-            .setStorage(1024)
-            .build();
+        ComputerBuilder builder;
+
+        builder.setCPU("Intel Core i9");
+        builder.setGPU("NVIDIA GeForce RTX 3080");
+        builder.setRAM(32);
+        builder.setStorage(1024);
+
+        Computer computer = builder.build();
 
         std::cout << "CPU: " << computer.getCPU() << '\n';
         std::cout << "GPU: " << computer.getGPU() << '\n';

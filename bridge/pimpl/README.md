@@ -28,7 +28,7 @@ pimpl/
 
 ## Pimpl Implementation
 
-### Matrix.h
+### Matrix.hpp
 
 Contains the public interface and a forward declaration of the private implementation class.
 

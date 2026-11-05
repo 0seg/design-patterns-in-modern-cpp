@@ -1,15 +1,15 @@
-# Pimpl Idiom — Matrix
+# Shrink-Wrapped Pimpl — Matrix
 
 ## Overview
 
-This project demonstrates the Pimpl (Pointer to Implementation) idiom through a mathematical Matrix class.
+This project demonstrates the Shrink-Wrapped Pimpl idiom through a mathematical Matrix class.
 
-Pimpl separates the public interface from the internal implementation, hiding data structures and implementation-specific dependencies from header files.
+Shrink-Wrapped Pimpl reserves storage inside the public object for its hidden implementation, avoiding a separate dynamic allocation for the implementation object.
 
 ## Structure
 
 ```text
-pimpl/
+shrink-wrapped-pimpl/
 ├── Matrix.h
 ├── Matrix.cpp
 ├── main.cpp
@@ -20,25 +20,20 @@ pimpl/
 
 - Matrix construction with configurable dimensions.
 - Element access and modification.
-- Matrix addition and subtraction.
-- Matrix multiplication.
-- Matrix transpose.
-- Matrix trace.
-- Matrix determinant using Gaussian elimination.
+- Matrix dimension retrieval.
+- Matrix display.
 
-## Pimpl Implementation
+## Shrink-Wrapped Pimpl Implementation
 
 ### Matrix.hpp
 
-Contains the public interface and a forward declaration of the private implementation class.
-
-The implementation is owned through `std::unique_ptr<Impl>`.
+Contains the public interface, a forward declaration of the private implementation class, and a fixed-size aligned storage buffer using `std::byte`.
 
 ### Matrix.cpp
 
-Defines the hidden `Impl` class, including matrix dimensions, internal storage, and mathematical operations.
+Defines the hidden `Impl` class, including matrix dimensions and internal storage.
 
-The matrix data is stored in a `std::vector<double>` using row-major layout.
+The implementation object is constructed directly inside the reserved storage using placement new.
 
 ### main.cpp
 
@@ -46,11 +41,13 @@ Demonstrates the public Matrix interface without exposing implementation details
 
 ## Key Concepts
 
-- Pimpl idiom
-- Forward declarations
+- Shrink-Wrapped Pimpl idiom
+- Raw storage
+- `std::byte`
+- `alignas`
+- Placement new
+- `std::launder`
+- Object lifetime
+- Explicit destruction
+- Memory alignment
 - Incomplete types
-- `std::unique_ptr`
-- Encapsulation
-- Compilation dependencies
-- Row-major matrix storage
-- Gaussian elimination

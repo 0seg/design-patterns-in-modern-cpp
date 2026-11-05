@@ -10,7 +10,7 @@ The pattern allows individual files and folders to be treated through a common i
 
 ```text
 file-system/
-├── FileSystem.h
+├── FileSystem.hpp
 ├── FileSystem.cpp
 ├── main.cpp
 └── README.md
@@ -25,11 +25,11 @@ file-system/
 
 ## Composite Implementation
 
-### FileSystem.h
+### file_system.hpp
 
 Defines the `FileSystemComponent` interface and its concrete implementations: `File` and `Folder`.
 
-### FileSystem.cpp
+### file_system.cpp
 
 Implements file and folder operations, including recursive size calculation.
 
